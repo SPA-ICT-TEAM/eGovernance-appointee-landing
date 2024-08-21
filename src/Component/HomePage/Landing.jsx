@@ -32,7 +32,6 @@ function LandingPage() {
     return <p>Error: {error}</p>;
   }
 
-  // Extract unique appointment titles for filters
   const uniqueTitles = ["All", ...new Set(advisers.map(a => a.appointment_title))];
 
   return (
