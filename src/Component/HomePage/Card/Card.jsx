@@ -65,7 +65,7 @@ export const Cards = ({ adviser }) => {
               key={id}
               data-index={id}
               ref={(el) => (cardsRef.current[id] = el)}
-              className={`flex flex-col justify-center items-center p-4 rounded-lg transform transition-all duration-500 cursor-pointer bg-white hover:scale-110 ${
+              className={`flex h-[350px] flex-col justify-center items-center p-4 rounded-lg transform transition-all duration-500 cursor-pointer bg-white hover:scale-110 ${
                 visibleCards.includes(id)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -73,16 +73,16 @@ export const Cards = ({ adviser }) => {
               style={{ transitionDelay: `${id * 100}ms` }}
               onClick={() => handleCardClick(card.name)} 
             >
-              <div className="w-40 rounded-md overflow-hidden">
-                <img src={card.image} alt={card.name} className="" />
+              <div className="w-40 h-[200px] rounded-md overflow-hidden">
+                <img src={card.photo} alt={card.name} className="" />
               </div>
-              <div className="flex flex-wrap gap-6 pt-5 items-center">
-                <h2 className="text-[18px] font-bold">{card.name}</h2>
-                <p className="text-[12px] text-[#71717A]">{card.position}</p>
+              <div className="flex w-[300px] flex-wrap gap-6 pt-5 items-center justify-center">
+                <h2 className="text-[18px] max-w-[80%] text-center font-bold">{card.name}</h2>
+                <p className="text-[12px] text-[#71717A]">{card.appointment_title}</p>
               </div>
               <div className="pt-5">
-                <p className="max-w-[250px] text-center text-[#71717A] text-[17px]">
-                  {card.office}
+                <p className="max-w-[300px] text-center text-[#71717A] text-[17px]">
+                  {card.appointment_position}
                 </p>
               </div>
             </div>
