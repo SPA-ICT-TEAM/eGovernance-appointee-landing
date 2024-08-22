@@ -1,23 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export const Filters = ({ onFilterChange }) => {
-  const filters = [
-    "All",
-    "SAP",
-    "SSA",
-    "SA",
-    "TA",
-    "Consultant",
-    "Cordinator",
-    "Principal Secretary",
-    "Director",
-  ];
-
+export const Filters = ({ onFilterChange, filters }) => {
   const [activeFilter, setActiveFilter] = useState(filters[0]);
 
   const handleFilterClick = (filter) => {
-    setActiveFilter(filter); // Set the active filter
-    onFilterChange(filter);  // Call the parent onFilterChange function
+    setActiveFilter(filter);
+    onFilterChange(filter); 
   };
 
   return (
@@ -28,10 +16,10 @@ export const Filters = ({ onFilterChange }) => {
             key={id}
             className={`p-2 rounded-md min-w-[80px] items-center flex justify-center cursor-pointer transition-all duration-300 ${
               filter === activeFilter
-                ? "bg-transparent  hover:border-transparent"
+                ? ""
                 : "bg-white border border-white hover:border-green-500"
             }`}
-            onClick={() => handleFilterClick(filter)} // Use handleFilterClick
+            onClick={() => handleFilterClick(filter)}
           >
             {filter}
           </div>
