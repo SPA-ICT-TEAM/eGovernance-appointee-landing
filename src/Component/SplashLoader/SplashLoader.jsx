@@ -6,7 +6,7 @@ function SplashLoader() {
       <img
         src={stateLogo}
         alt='Logo'
-        className='h-40 object-contain animate-scale-in-out'
+        className='h-30 object-contain animate-scale-in-out'
       />
     </div>
   );
