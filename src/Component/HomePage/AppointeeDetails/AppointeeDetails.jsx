@@ -63,8 +63,9 @@ export const Details = () => {
               {selectedAdviser.appointment_position}
             </p>
           </div>
-          <div>
+          <div className="w-[400px] flex flex-col gap-5">
             <h2 className="text-2xl">Biography / Profile</h2>
+            <p className="text-gray-700">{selectedAdviser.biography}</p>
           </div>
         </div>
       </div>
