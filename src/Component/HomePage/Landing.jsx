@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Cards } from "./Card/Card";
 import { Filters } from "./Filters/Filters";
 import { UserContext } from "../UserContext";
+import logo from "../../assets/images/logo.png"
 
 function LandingPage() {
   const { advisers, loading, error } = useContext(UserContext);
@@ -25,11 +26,21 @@ function LandingPage() {
   }, [advisers]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex flex-col h-screen items-center justify-center">
+        <img src={logo} alt="" className="w-28"/>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return (
+      <div className="flex flex-col h-screen items-center justify-center">
+        <img src={logo} alt="" className="w-28"/>
+        <p>Error: {error}</p>
+      </div>
+    );
   }
 
   const uniqueTitles = ["All", ...new Set(advisers.map(a => a.appointment_title))];
