@@ -2,18 +2,17 @@ import logo from "../../../assets/images/logo.png";
 
 export const AppointeeLandingNav = () => {
   return (
-    <nav className="p-4 bg-white sticky w-full z-50 flex justify-center">
-      <div className="container flex justify-between">
+    <nav className="p-4 bg-green-600 w-full fixed z-50 flex h-[60px] justify-center">
+      <div className="container flex justify-between items-center">
         <img src={logo} alt="Logo" className="h-10 w-10" />
         <div className="flex items-center gap-12">
           <ul className="flex items-center gap-12 text-white cursor-pointer">
-            <li className="text-green-500">Home</li>
-            <li className="text-green-500" >ENSG</li>
+            <li className="text-white">Home</li>
+            <li className="text-white" >ENSG</li>
           </ul>
-          {/* <button className="bg-green-500 p-3 rounded-xl hover:bg-green-700 text-white font-bold ">
-            {" "}
-            Login{" "}
-          </button> */}
+          <button className="bg-white px-5 py-1.5 rounded-lg hover:bg-green-700 text-green-600 font-medium">
+            Login
+          </button>
         </div>
       </div>
     </nav>

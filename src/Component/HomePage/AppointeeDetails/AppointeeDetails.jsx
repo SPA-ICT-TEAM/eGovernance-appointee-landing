@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { UserContext } from "../../UserContext";
@@ -21,6 +21,8 @@ export const Details = () => {
   }
 
   const selectedAdviser = advisers.find((a) => a.name === name);
+
+  console.log(selectedAdviser);
 
   if (!selectedAdviser) {
     return <p>No details found for this appointee.</p>;
