@@ -74,7 +74,12 @@ export const Cards = ({ adviser }) => {
               onClick={() => handleCardClick(card.name)} 
             >
               <div className="w-40 h-[200px] rounded-md overflow-hidden">
-                <img src={card.photo} alt={card.name} className="" />
+                <img 
+                  src={card.photo || logo} 
+                  alt={card.name} 
+                  className="" 
+                  onError={(e) => e.target.src = logo} 
+                />
               </div>
               <div className="flex w-[300px] flex-wrap gap-6 pt-5 items-center justify-center">
                 <h2 className="text-[18px] max-w-[80%] text-center font-bold">{card.name}</h2>
