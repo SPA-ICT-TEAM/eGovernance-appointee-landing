@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { UserContext } from "../../UserContext";
+import logo from "../../../assets/images/logo.png";
 
 export const Details = () => {
   const { name } = useParams();
@@ -13,11 +14,21 @@ export const Details = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex flex-col h-screen items-center justify-center">
+        <img src={logo} alt="Logo" className="w-14"/>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return (
+      <div className="flex flex-col h-screen items-center justify-center">
+        <img src={logo} alt="Logo" className="w-14"/>
+        <p>Error: {error}</p>
+      </div>
+    );
   }
 
   const selectedAdviser = advisers.find((a) => a.name === name);
@@ -36,7 +47,11 @@ export const Details = () => {
           <IoArrowBack className="w-8 h-8" />
         </div>
         <div className="w-[500px] h-[600px] rounded-lg overflow-hidden border-2 border-green-500">
-          <img src={selectedAdviser.photo} alt={selectedAdviser.name} />
+          <img 
+            src={selectedAdviser.photo || logo} 
+            alt={selectedAdviser.name} 
+            onError={(e) => e.target.src = logo} 
+          />
         </div>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
@@ -48,8 +63,9 @@ export const Details = () => {
               {selectedAdviser.appointment_position}
             </p>
           </div>
-          <div>
+          <div className="w-[400px] flex flex-col gap-5">
             <h2 className="text-2xl">Biography / Profile</h2>
+            <p className="text-gray-700">{selectedAdviser.biography}</p>
           </div>
         </div>
       </div>
