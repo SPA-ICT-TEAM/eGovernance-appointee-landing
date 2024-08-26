@@ -82,10 +82,10 @@ export const Cards = ({ adviser }) => {
                 />
               </div>
               <div className="flex w-[300px] flex-wrap gap-6 pt-5 items-center justify-center">
-                <h2 className="text-[18px] max-w-[80%] text-center font-bold">{card.name}</h2>
+                <h2 className="text-[18px] max-w-[80%] text-center font-bold">{card.name.toUpperCase()}</h2>
                 <p className="text-[12px] text-[#71717A]">{card.appointment_title}</p>
               </div>
-              <div className="pt-5">
+              <div className="pt-5 flex flex-col">
                 <p className="max-w-[300px] text-center text-[#71717A] text-[17px]">
                   {card.appointment_position}
                 </p>
