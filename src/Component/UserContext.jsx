@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
     const fetchAdvisers = async () => {
       try {
         const response = await axios.get('https://staging-appointees.enugustate.gov.ng/api/appointee/index');
-        console.log(response.data);
+        // console.log(response.data);
         setAdvisers(response.data);
       } catch (err) {
         setError(err.message);

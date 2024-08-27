@@ -12,7 +12,11 @@ export const AppointeeLandingNav = () => {
             <li className="text-white">Home</li>
             <li className="text-white" >ENSG</li>
           </ul>
-          
+          <a href={import.meta.env.VITE_LOGIN_URL}>
+              <button className="bg-white text-green-600 px-4 py-2 rounded-md font-semibold hover:bg-green-100 transition-colors">
+                  Login
+              </button>
+          </a>
         </div>
       </div>
     </nav>

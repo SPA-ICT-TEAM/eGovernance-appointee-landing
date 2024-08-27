@@ -3,6 +3,7 @@ import { Cards } from "./Card/Card";
 import { Filters } from "./Filters/Filters";
 import { UserContext } from "../UserContext";
 import logo from "../../assets/images/logo.png"
+import Footer from "../Footer";
 
 function LandingPage() {
   const { advisers, loading, error } = useContext(UserContext);
@@ -46,10 +47,10 @@ function LandingPage() {
   const uniqueTitles = ["All", ...new Set(advisers.map(a => a.appointment_title))];
 
   return (
-    <div>
-      <div className="min-w-screen min-h-screen">
-        <div className="container flex items-center flex-col">
-          <div className="text-center pt-28 flex flex-col items-center justify-center">
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow flex items-center justify-center">
+        <div className="container mx-auto px-4">
+          <div className="text-center flex flex-col items-center justify-center">
             <p className="text-4xl font-semibold p-5 max-w-[1100px]">
               Government Appointed Special Advisers and Special Assistants
             </p>
@@ -59,7 +60,7 @@ function LandingPage() {
               and guidance.
             </p>
           </div>
-          <div className="pt-6">
+          <div className="pt-6 flex justify-center">
             <Filters onFilterChange={handleFilterChange} filters={uniqueTitles} />
           </div>
           <div className="p-6 w-full">
@@ -67,6 +68,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
