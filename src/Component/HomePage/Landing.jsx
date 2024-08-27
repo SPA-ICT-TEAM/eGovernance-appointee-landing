@@ -47,7 +47,7 @@ function LandingPage() {
   const uniqueTitles = ["All", ...new Set(advisers.map(a => a.appointment_title))];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div id="MainContent" className="flex flex-col min-h-screen">
       <div className="flex-grow flex items-center justify-center">
         <div className="container mx-auto px-4">
           <div className="text-center flex flex-col items-center justify-center">
