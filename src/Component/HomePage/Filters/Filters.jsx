@@ -10,7 +10,7 @@ export const Filters = ({ onFilterChange, filters }) => {
 
   return (
     <div className="p-5 flex items-center justify-center font-bold">
-      <div className="flex flex-wrap gap-12 justify-center">
+      <div className="flex flex-wrap gap-2 sm:gap-12 md:gap-2 lg:gap-12 justify-center">
         {filters.map((filter, id) => (
           <div
             key={id}

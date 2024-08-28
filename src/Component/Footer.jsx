@@ -28,7 +28,7 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
-                <p className="mt-12 text-center text-sm text-green-100 lg:text-right">© 2024 ENUGU STATE GOVERNMENT. All rights reserved.</p>
+                <p className="mt-12 text-center text-sm text-green-100 lg:text-right">© {new Date().getFullYear()} ENUGU STATE GOVERNMENT. All rights reserved.</p>
             </div>
       </footer>
     );
