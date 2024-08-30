@@ -3,7 +3,7 @@
    on:
      push:
        paths:
-         - '/home/eportal/web/staging.enugustate.gov.ng/public_html/ministry/frontends/appointee/**'
+         - '/home/eportal/web/staging.enugustate.gov.ng/public_html/frontends/appointee/**'
      workflow_dispatch:
 
    jobs:
@@ -16,7 +16,7 @@
            with:
              node-version: '20'
          - run: |
-             cd frontend/appointee
+             cd /home/eportal/web/staging.enugustate.gov.ng/public_html/frontends/appointee
              npm ci
              npm run build
          - name: Deploy to Server
