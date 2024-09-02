@@ -45,8 +45,8 @@ export const Cards = ({ adviser }) => {
     };
   }, [adviser]);
 
-  const handleCardClick = (name) => {
-    navigate(`/appointee/${name}`);
+  const handleCardClick = (slug) => {
+    navigate(`/appointee/${slug}`);
   };
 
   return (
@@ -71,7 +71,7 @@ export const Cards = ({ adviser }) => {
                   : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: `${id * 100}ms` }}
-              onClick={() => handleCardClick(card.name)} 
+              onClick={() => handleCardClick(card.slug)} 
             >
               <div className="w-40 h-[200px] rounded-md overflow-hidden">
                 <img 
