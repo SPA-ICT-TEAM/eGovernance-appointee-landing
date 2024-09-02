@@ -3,8 +3,8 @@ import footerImg from "../assets/images/footer.svg";
 
 const Footer = () => {
     return (
-        <footer className="bg-green-900 w-screen px-20" style={{ backgroundImage: `url(${footerImg})`, backgroundSize: 'cover' }}>
-            <div className="relative mx-10 px-20 py-16 sm:px-6 lg:px-8 lg:pt-24">
+        <footer className="bg-green-900 w-screen px-20 sm:px-5" style={{ backgroundImage: `url(${footerImg})`, backgroundSize: 'cover' }}>
+            <div className="relative mx-10 px-10 py-16 sm:px-6 lg:px-8 lg:pt-24">
                 <div className="absolute end-4 top-4 sm:end-6 sm:top-6 lg:end-8 lg:top-8">
                     <a className="inline-block rounded-full bg-teal-600 p-2 text-white shadow transition hover:bg-teal-500 sm:p-3 lg:p-4" href="#MainContent">
                         <span className="sr-only">Back to top</span>
@@ -28,7 +28,7 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
-                <p className="mt-12 text-center text-sm text-green-100 lg:text-right">© 2024 ENUGU STATE GOVERNMENT. All rights reserved.</p>
+                <p className="mt-12 text-center text-sm text-green-100 lg:text-right">© {new Date().getFullYear()} ENUGU STATE GOVERNMENT. All rights reserved.</p>
             </div>
       </footer>
     );

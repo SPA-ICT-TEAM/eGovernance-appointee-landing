@@ -73,11 +73,11 @@ export const Cards = ({ adviser }) => {
               style={{ transitionDelay: `${id * 100}ms` }}
               onClick={() => handleCardClick(card.slug)} 
             >
-              <div className="w-40 h-[200px] rounded-md overflow-hidden">
+              <div className="w-40 h-40 rounded-md overflow-hidden">
                 <img 
                   src={card.photo || logo} 
                   alt={card.name} 
-                  className="" 
+                  className="w-full h-full object-cover" 
                   onError={(e) => e.target.src = logo} 
                 />
               </div>
