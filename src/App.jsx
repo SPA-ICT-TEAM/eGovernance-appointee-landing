@@ -12,7 +12,7 @@ function App() {
         <AppointeeLandingNav />
         <Routes>
           <Route path="/" element={<AppointeeHomePage />} />
-          <Route path="/appointee/:name" element={<Details />} />
+          <Route path="/appointee/:slug" element={<Details />} />
         </Routes>
       </Router>
     </UserProvider>

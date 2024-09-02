@@ -7,7 +7,7 @@ import logo from "../../../assets/images/logo.png";
 import Footer from "../../Footer";
 
 export const Details = () => {
-  const { name } = useParams();
+  const { slug } = useParams();
   const { advisers, loading, error } = useContext(UserContext);
   const navigate = useNavigate();
   
@@ -36,7 +36,7 @@ export const Details = () => {
     );
   }
 
-  const selectedAdviser = advisers.find((a) => a.name === name);
+  const selectedAdviser = advisers.find((a) => a.slug === slug);
 
   if (!selectedAdviser) {
     return <p>No details found for this appointee.</p>;
