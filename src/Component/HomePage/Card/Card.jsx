@@ -75,10 +75,10 @@ export const Cards = ({ adviser }) => {
             >
               <div className="w-40 h-40 rounded-md overflow-hidden">
                 <img 
-                  src={card.photo || logo} 
+                  src={card.photo} 
                   alt={card.name} 
                   className="w-full h-full object-cover" 
-                  onError={(e) => e.target.src = logo} 
+                  // onError={(e) => e.target.src = logo} 
                 />
               </div>
               <div className="flex w-[300px] flex-wrap gap-6 pt-5 items-center justify-center">
