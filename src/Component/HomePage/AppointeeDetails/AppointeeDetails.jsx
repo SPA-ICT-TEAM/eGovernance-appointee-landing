@@ -104,7 +104,7 @@ export const Details = () => {
     const renderLinkdin = () => {
       if(selectedAdviser.linkedin) {
           return (
-              <a href={`http://${selectedAdviser.linkedin}`} className="text-green-600 hover:underline">
+              <a href={selectedAdviser.linkedin} target="blank" className="text-green-600 hover:underline">
                 <FaLinkedin className="text-green-600 w-7 h-7" />
               </a>
           );
