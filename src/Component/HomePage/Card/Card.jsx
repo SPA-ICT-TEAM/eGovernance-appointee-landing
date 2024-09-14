@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from "../../../assets/images/logo.png";
 
 export const Cards = ({ adviser }) => {
   const [visibleCards, setVisibleCards] = useState([]);
   const cardsRef = useRef([]);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,36 +59,39 @@ export const Cards = ({ adviser }) => {
           </p>
         </div>
       ) : (
-        <div className="flex flex-wrap gap-6 justify-center">
+        <div
+          className="grid gap-6 justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
           {adviser.map((card, id) => (
             <div
               key={id}
               data-index={id}
               ref={(el) => (cardsRef.current[id] = el)}
-              className={`flex h-[350px] flex-col justify-center items-center p-4 rounded-lg transform transition-all duration-500 cursor-pointer bg-white hover:scale-110 ${
+              className={`w-full bg-white rounded-3xl overflow-hidden shadow-lg transform transition-all duration-500 cursor-pointer hover:scale-105 ${
                 visibleCards.includes(id)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: `${id * 100}ms` }}
-              onClick={() => handleCardClick(card.name)} 
+              onClick={() => handleCardClick(card.name)}
             >
-              <div className="w-40 h-40 rounded-md overflow-hidden">
-                <img 
-                  src={card.photo || logo} 
-                  alt={card.name} 
-                  className="w-full h-full object-cover" 
-                  onError={(e) => e.target.src = logo} 
-                />
-              </div>
-              <div className="flex w-[300px] flex-wrap gap-6 pt-5 items-center justify-center">
-                <h2 className="text-[18px] max-w-[80%] text-center font-bold">{card.name.toUpperCase()}</h2>
-                <p className="text-[12px] text-[#71717A]">{card.appointment_title}</p>
-              </div>
-              <div className="pt-5 flex flex-col">
-                <p className="max-w-[300px] text-center text-[#71717A] text-[17px]">
-                  {card.appointment_position}
-                </p>
+              <div className="p-4">
+                <h2 className="text-green-600 text-lg font-semibold">{card.name}</h2>
+                <p className="text-green-600 text-xs mb-2">{card.appointment_title}</p>
+                <div className="rounded-xl p-2 mb-3 border-[2px] border-orange-100">
+                  <img 
+                    src={card.photo}
+                    alt={card.name}
+                    className="w-full h-50 object-cover rounded-lg"
+                    onError={(e) => {
+                      console.log("Error loading image, fallback to logo", e); // Debugging
+                      e.target.src = logo;
+                    }}
+                  />
+                </div>
+                <div className="bg-green-600 h-[80px] rounded-xl flex text-center py-3 mb-3 px-5">
+                  <p className="text-xs self-center text-white">{card?.appointment_position}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -97,3 +100,5 @@ export const Cards = ({ adviser }) => {
     </div>
   );
 };
+
+export default Cards;
