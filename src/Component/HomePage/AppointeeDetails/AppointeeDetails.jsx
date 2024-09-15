@@ -35,6 +35,7 @@ export const Details = () => {
   }
 
   const selectedAdviser = advisers.find((a) => a.slug === slug);
+  
 
   if (!selectedAdviser) {
     return <p>No details found for this appointee.</p>;
@@ -66,12 +67,12 @@ export const Details = () => {
           </div>
           <h2 className="text-green-600 text-xl font-semibold">{selectedAdviser.name}</h2>
           <p className="text-green-600 text-sm mb-4">{selectedAdviser.appointment_title}</p>
-          <div className="border-orange-100 border-[2px] rounded-xl p-2 mb-4">
+          <div className="border-orange-200 border-[2px] rounded-xl mb-4">
             <img 
-              src={selectedAdviser.photo || logo}
+              src={selectedAdviser?.photo || logo}
               alt={selectedAdviser.name}
               onError={(e) => (e.target.src = logo)}
-              style={{ width: '100%', height: '420px', objectFit: 'cover' }}
+              style={{ width: '100%', height: '500px', objectFit: 'cover', borderRadius: '10px' }}
             />
           </div>
           <div className="bg-green-600 h-[80px] rounded-xl flex text-center py-3 mb-3 px-5">
@@ -103,9 +104,9 @@ export const Details = () => {
         </div>
         
         {/* Right side - Scrollable Content */}
-        <div className="w-full lg:w-1/2 p-6 overflow-y-auto">
+        <div className="w-full lg:w-1/2 p-6 overflow-y-auto pt-[60px]">
           <div className="prose">
-            <h3 className="text-xl font-semibold mb-4">Biography / Profile</h3>
+            <h3 className="text-xl font-semibold mb-[35px]">Biography / Profile</h3>
             <div>
               {isExpanded ? fullBiography() : truncatedBiography}
             </div>

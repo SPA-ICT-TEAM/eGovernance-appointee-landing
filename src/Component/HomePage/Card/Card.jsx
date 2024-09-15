@@ -23,7 +23,7 @@ export const Cards = ({ adviser }) => {
         });
       },
       {
-        threshold: 0.2,
+        threshold: 0.0,
       }
     );
 
@@ -78,11 +78,11 @@ export const Cards = ({ adviser }) => {
               <div className="p-4">
                 <h2 className="text-green-600 text-lg font-semibold">{card.name.toTitleCase()}</h2>
                 <p className="text-green-600 text-xs mb-2">{card.appointment_title}</p>
-                <div className="rounded-xl p-2 mb-3 border-[2px] border-orange-100">
+                <div className="rounded-xl mb-3 border-[2px] border-orange-200">
                   <img 
                     src={card?.photo || logo}
                     alt={card.name}
-                    style={{ width: '100%', height: '320px', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '320px', objectFit: 'cover', borderRadius: '10px' }}
                     onError={(e) => {
                       console.log("Error loading image, fallback to logo", e);
                       e.target.src = logo;
