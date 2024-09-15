@@ -1,21 +1,19 @@
-import { useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { IoArrowBack, IoCall, IoMail } from "react-icons/io5";
-import { FaLinkedin } from "react-icons/fa";
-import { UserContext } from "../../UserContext";
-import logo from "../../../assets/images/logo.png";
-import Footer from "../../Footer";
+import { useContext, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { IoArrowBack, IoCall, IoMail } from 'react-icons/io5';
+import { FaLinkedin } from 'react-icons/fa';
+import { UserContext } from '../../UserContext';
+import logo from '../../../assets/images/logo.png';
+import Footer from '../../Footer';
 
 export const Details = () => {
   const { slug } = useParams();
   const { advisers, loading, error } = useContext(UserContext);
   const navigate = useNavigate();
-  
-  const [isFullBiographyShown, setIsFullBiographyShown] = useState(false);
-  const [maxChars, setMaxChars] = useState(400); 
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const backToMain = () => {
-    navigate("/");
+    navigate('/');
   };
 
   if (loading) {
@@ -44,120 +42,80 @@ export const Details = () => {
 
   const getTrimmedText = (text, maxChars) => {
     if (text.length <= maxChars) return text;
-    return text.substring(0, maxChars) + "...";
+    return text.substring(0, maxChars) + '...';
   };
 
-  const renderQualifications = () => {
-    if(selectedAdviser.qualifications) {
-       return (
-          <p className="mt-4">{selectedAdviser.qualifications}</p>
-       )
-    }
-  }
+  const fullBiography = () => (
+    <>
+      <p>{selectedAdviser.biography}</p>
+      {selectedAdviser.qualifications && (
+        <p className="mt-4">{selectedAdviser.qualifications}</p>
+      )}
+    </>
+  );
 
-  const renderExperience = () => {
-    if(selectedAdviser.experience) {
-       return (
-          <p className="mt-4">{selectedAdviser.experience}</p>
-       )
-    }
-  }
-
-  const fullBiography = () => {
-    return (
-      <>
-        <p>{selectedAdviser.biography}</p>
-        {renderQualifications()}
-        {/* {renderExperience()} */}
-      </>
-    )
-  }
-
-  const biographyToShow = isFullBiographyShown
-    ? fullBiography()
-    : getTrimmedText(selectedAdviser.biography, maxChars);
-
-    const checkMore = () => {
-      return (selectedAdviser.biography.length > maxChars || selectedAdviser.qualifications || selectedAdviser.experience)
-    }
-
-    const renderTelephone = () => {
-        if(selectedAdviser.phone) {
-            return (
-                <a href={`tel:${selectedAdviser.phone}`} className="text-green-600 hover:underline">
-                  <IoCall className="text-green-600 w-7 h-7" />
-                </a>
-            );
-        }
-    }
-
-    const renderMail = () => {
-      if(selectedAdviser.email) {
-          return (
-              <a href={`mailto:${selectedAdviser.email}`} className="text-green-600 hover:underline">
-                <IoMail className="text-green-600 w-7 h-7" />
-              </a>
-          );
-      }
-    }
-
-    const renderLinkdin = () => {
-      if(selectedAdviser.linkedin) {
-          return (
-              <a href={selectedAdviser.linkedin} target="blank" className="text-green-600 hover:underline">
-                <FaLinkedin className="text-green-600 w-7 h-7" />
-              </a>
-          );
-      }
-  }
+  const truncatedBiography = getTrimmedText(selectedAdviser.biography, 450);
 
   return (
-    <div id="MainContent" className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-10 py-24 sm:py-16 md:py-24 lg:px-16 xl:px-34">
-        <div className=" relative flex flex-col md:flex-row justify-center items-start gap-8 md:gap-16">
-          <button
-            onClick={backToMain}
-            className="absolute top-0 left-[-80px] mt-0 sm:mt-8 rounded-full p-2 sm:p-3 border border-green-500 cursor-pointer"
-          >
-            <IoArrowBack className="w-6 h-6 sm:w-8 sm:h-8" />
-          </button>
-          <div className="w-full md:w-1/2 lg:w-2/5">
-            <div className="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden border-2 border-green-500">
-              <img
-                src={selectedAdviser.photo || logo}
-                alt={selectedAdviser.name}
-                onError={(e) => (e.target.src = logo)}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="mt-4 flex justify-center gap-4">
-              <p className="text-green-600">Contact: </p>
-              {renderTelephone()}
-              {renderMail()}
-              {renderLinkdin()}
-            </div>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="flex flex-col lg:flex-row w-full max-w-4xl mt-[90px] mb-[60px] mx-auto bg-white rounded-3xl overflow-hidden shadow-lg">
+        {/* Left side - Appointee Card */}
+        <div className="w-full lg:w-1/2 p-6 flex flex-col">
+          <div className="mb-4">
+            <IoArrowBack className="text-green-600 cursor-pointer w-6 h-6" onClick={backToMain} />
           </div>
-          <div className="w-full md:w-1/2 lg:w-3/5 flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <div className="flex flex-wrap gap-4 items-center">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl">{selectedAdviser.name}</h1>
-                <p className="text-sm sm:text-base">{selectedAdviser.appointment_title}</p>
+          <h2 className="text-green-600 text-xl font-semibold">{selectedAdviser.name}</h2>
+          <p className="text-green-600 text-sm mb-4">{selectedAdviser.appointment_title}</p>
+          <div className="border-orange-100 border-[2px] rounded-xl p-2 mb-4">
+            <img 
+              src={selectedAdviser.photo || logo}
+              alt={selectedAdviser.name}
+              onError={(e) => (e.target.src = logo)}
+              style={{ width: '100%', height: '350px', objectFit: 'cover' }}
+            />
+          </div>
+          <div className="bg-green-600 h-[80px] rounded-xl flex text-center py-3 mb-3 px-5">
+            <p className="text-sm self-center text-white">{selectedAdviser?.appointment_position}</p>
+          </div>
+          <div className="flex justify-center gap-3">
+            {selectedAdviser.phone && (
+              <div className="bg-gray-200 p-2 rounded-full">
+                <a href={`tel:${selectedAdviser.phone}`} className="text-green-600 hover:underline">
+                  <IoCall className="text-green-600 w-4 h-4" />
+                </a>
               </div>
-              <p className="text-gray-500 text-sm sm:text-base">{selectedAdviser.appointment_position}</p>
+            )}
+            {selectedAdviser.email && (
+              <div className="bg-gray-200 p-2 rounded-full">
+                <a href={`mailto:${selectedAdviser.email}`} className="text-green-600 hover:underline">
+                  <IoMail className="text-green-600 w-4 h-4" />
+                </a>
+              </div>
+            )}
+            {selectedAdviser.linkedin && (
+              <div className="bg-gray-200 p-2 rounded-full">
+                <a href={selectedAdviser.linkedin} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">
+                  <FaLinkedin className="text-green-600 w-4 h-4" />
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Right side - Scrollable Content */}
+        <div className="w-full lg:w-1/2 p-6 overflow-y-auto">
+          <div className="prose">
+            <h3 className="text-xl font-semibold mb-4">Biography / Profile</h3>
+            <div>
+              {isExpanded ? fullBiography() : truncatedBiography}
             </div>
-            <div className="flex flex-col gap-5">
-              <h2 className="text-xl sm:text-2xl">Biography / Profile</h2>
-              <p className="text-gray-700 text-sm sm:text-base">{biographyToShow}</p>
-              {checkMore() && (
-                <div>
-                  <button
-                    onClick={() => setIsFullBiographyShown(!isFullBiographyShown)} 
-                    className="p-2 sm:p-3 px-4 sm:px-6 rounded-lg bg-green-600 text-white text-sm sm:text-base"
-                  >
-                    {isFullBiographyShown ? "See less" : "See more"} 
-                  </button>
-                </div>
-              )}
+            <div className="mt-4">
+              <button 
+                className="flex items-center bg-green-600 text-white px-4 py-2 rounded-full"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                {isExpanded ? 'See less' : 'Read more'}
+              </button>
             </div>
           </div>
         </div>
@@ -166,4 +124,3 @@ export const Details = () => {
     </div>
   );
 };
-
