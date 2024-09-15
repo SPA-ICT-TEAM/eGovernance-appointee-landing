@@ -58,7 +58,7 @@ export const Details = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
-      <div className="flex flex-col lg:flex-row w-full max-w-4xl mt-[90px] mb-[60px] mx-auto bg-white rounded-3xl overflow-hidden shadow-lg">
+      <div className="flex flex-col lg:flex-row w-full max-w-6xl mt-[90px] mb-[60px] mx-auto bg-white rounded-3xl overflow-hidden shadow-lg">
         {/* Left side - Appointee Card */}
         <div className="w-full lg:w-1/2 p-6 flex flex-col">
           <div className="mb-4">
@@ -71,7 +71,7 @@ export const Details = () => {
               src={selectedAdviser.photo || logo}
               alt={selectedAdviser.name}
               onError={(e) => (e.target.src = logo)}
-              style={{ width: '100%', height: '350px', objectFit: 'cover' }}
+              style={{ width: '100%', height: '420px', objectFit: 'cover' }}
             />
           </div>
           <div className="bg-green-600 h-[80px] rounded-xl flex text-center py-3 mb-3 px-5">
