@@ -35,27 +35,35 @@ export const Details = () => {
   }
 
   const selectedAdviser = advisers.find((a) => a.slug === slug);
-  
 
   if (!selectedAdviser) {
     return <p>No details found for this appointee.</p>;
   }
 
+  const getFullBiography = (adviser) => {
+    let fullBio = adviser.biography;
+    if (adviser.qualifications) {
+      fullBio += '\n\n' + adviser.qualifications;
+    }
+    return fullBio;
+  };
+
   const getTrimmedText = (text, maxChars) => {
     if (text.length <= maxChars) return text;
-    return text.substring(0, maxChars) + '...';
+    let trimmed = text.slice(0, maxChars);
+    // Find the last complete sentence
+    const lastPeriod = trimmed.lastIndexOf('.');
+    if (lastPeriod > 0) {
+      trimmed = trimmed.slice(0, lastPeriod + 1);
+    }
+    return trimmed + '...';
   };
 
   const fullBiography = () => (
-    <>
-      <p>{selectedAdviser.biography}</p>
-      {selectedAdviser.qualifications && (
-        <p className="mt-4">{selectedAdviser.qualifications}</p>
-      )}
-    </>
+    <p>{getFullBiography(selectedAdviser)}</p>
   );
 
-  const truncatedBiography = getTrimmedText(selectedAdviser.biography, 450);
+  const truncatedBiography = getTrimmedText(getFullBiography(selectedAdviser), 1203);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
@@ -108,7 +116,7 @@ export const Details = () => {
           <div className="prose">
             <h3 className="text-xl font-semibold mb-[35px]">Biography / Profile</h3>
             <div>
-              {isExpanded ? fullBiography() : truncatedBiography}
+              {isExpanded ? fullBiography() : <p>{truncatedBiography}</p>}
             </div>
             <div className="mt-4">
               <button 
