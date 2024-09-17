@@ -40,6 +40,12 @@ export const Details = () => {
     return <p>No details found for this appointee.</p>;
   }
 
+  const decodeHTMLEntities = (text) => {
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = text;
+    return textArea.value;
+  };
+
   // const getFullBiography = (adviser) => {
   //   let fullBio = adviser.biography;
   //   if (adviser.qualifications) {
@@ -49,14 +55,14 @@ export const Details = () => {
   // };
 
   const getFullBiography = (adviser) => {
-    let fullBio = adviser.biography || '';
+    let fullBio = decodeHTMLEntities(adviser.biography || '');
   
     if (adviser.qualifications) {
-      fullBio += '\n\n' + adviser.qualifications;
+      fullBio += '\n\n' + decodeHTMLEntities(adviser.qualifications);
     }
   
     if (adviser.experience) {
-      fullBio += '\n\n' + adviser.experience;
+      fullBio += '\n\n' + decodeHTMLEntities(adviser.experience);
     }
   
     return fullBio.trim();
