@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // src/context/UserContext.js
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
@@ -12,7 +13,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchAdvisers = async () => {
       try {
-        const response = await axios.get('https://staging-appointees.enugustate.gov.ng/api/appointee/index');
+        const response = await axios.get('https://appointees.enugustate.gov.ng/api/appointee/index');
         // console.log(response.data);
         setAdvisers(response.data);
       } catch (err) {

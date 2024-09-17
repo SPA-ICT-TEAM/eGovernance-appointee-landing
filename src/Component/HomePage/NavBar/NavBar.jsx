@@ -31,11 +31,18 @@ export const AppointeeLandingNav = () => {
           <ul className={`flex items-center gap-12 text-white cursor-pointer ${isMobileMenuOpen ? 'flex-col fixed inset-0 bg-green-600 justify-center' : 'hidden md:flex'}`}>
             <li className="text-center"><Link to="/" className="text-white" onClick={() => handleItemClick("/")}>Home</Link></li>
             <li className="text-center"><a href="https://enugustate.gov.ng" target="_blank" rel="noopener noreferrer" className="text-white" onClick={() => setIsMobileMenuOpen(false)}>ENSG</a></li>
-            <li className="text-center mt-8 md:mt-0"><a href={import.meta.env.VITE_LOGIN_URL} onClick={() => setIsMobileMenuOpen(false)}>
-              <button className="bg-white text-green-600 px-4 py-2 rounded-md font-semibold hover:bg-green-100 transition-colors">
-                Login
-              </button>
-            </a></li>
+            <li className="text-center mt-8 md:mt-0">
+              <a
+                href="https://egovernance.enugustate.gov.ng/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <button className="bg-white text-green-600 px-4 py-2 rounded-md font-semibold hover:bg-green-100 transition-colors">
+                  Login
+                </button>
+              </a>
+            </li>
           </ul>
           {isMobileMenuOpen && (
             <button className="text-white fixed top-4 right-4" onClick={toggleMobileMenu}>

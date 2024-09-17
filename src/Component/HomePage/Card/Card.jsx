@@ -23,7 +23,7 @@ export const Cards = ({ adviser }) => {
         });
       },
       {
-        threshold: 0.2,
+        threshold: 0.0,
       }
     );
 
@@ -45,8 +45,8 @@ export const Cards = ({ adviser }) => {
     };
   }, [adviser]);
 
-  const handleCardClick = (name) => {
-    navigate(`/appointee/${name}`);
+  const handleCardClick = (slug) => {
+    navigate(`/appointee/${slug}`);
   };
 
   return (
@@ -73,24 +73,24 @@ export const Cards = ({ adviser }) => {
                   : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: `${id * 100}ms` }}
-              onClick={() => handleCardClick(card.name)}
+              onClick={() => handleCardClick(card.slug)}
             >
               <div className="p-4">
-                <h2 className="text-green-600 text-lg font-semibold">{card.name}</h2>
+                <h2 className="text-green-600 text-lg font-semibold">{card.name.toTitleCase()}</h2>
                 <p className="text-green-600 text-xs mb-2">{card.appointment_title}</p>
-                <div className="rounded-xl p-2 mb-3 border-[2px] border-orange-100">
+                <div className="rounded-xl mb-3 border-[2px] border-orange-200">
                   <img 
-                    src={card.photo}
+                    src={card?.photo || logo}
                     alt={card.name}
-                    className="w-full h-50 object-cover rounded-lg"
+                    style={{ width: '100%', height: '320px', objectFit: 'cover', borderRadius: '10px' }}
                     onError={(e) => {
-                      console.log("Error loading image, fallback to logo", e); // Debugging
+                      console.log("Error loading image, fallback to logo", e);
                       e.target.src = logo;
                     }}
                   />
                 </div>
                 <div className="bg-green-600 h-[80px] rounded-xl flex text-center py-3 mb-3 px-5">
-                  <p className="text-xs self-center text-white">{card?.appointment_position}</p>
+                  <p className="text-sm self-center text-white">{card?.appointment_position}</p>
                 </div>
               </div>
             </div>
