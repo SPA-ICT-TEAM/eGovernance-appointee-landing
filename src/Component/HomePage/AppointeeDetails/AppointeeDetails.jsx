@@ -40,12 +40,26 @@ export const Details = () => {
     return <p>No details found for this appointee.</p>;
   }
 
+  // const getFullBiography = (adviser) => {
+  //   let fullBio = adviser.biography;
+  //   if (adviser.qualifications) {
+  //     fullBio += '\n\n' + adviser.qualifications;
+  //   }
+  //   return fullBio;
+  // };
+
   const getFullBiography = (adviser) => {
-    let fullBio = adviser.biography;
+    let fullBio = adviser.biography || '';
+  
     if (adviser.qualifications) {
       fullBio += '\n\n' + adviser.qualifications;
     }
-    return fullBio;
+  
+    if (adviser.experience) {
+      fullBio += '\n\n' + adviser.experience;
+    }
+  
+    return fullBio.trim();
   };
 
   const getTrimmedText = (text, maxChars) => {
@@ -60,7 +74,9 @@ export const Details = () => {
   };
 
   const fullBiography = () => (
-    <p>{getFullBiography(selectedAdviser)}</p>
+    <p
+      dangerouslySetInnerHTML={{ __html: getFullBiography(selectedAdviser) }}
+    ></p>
   );
 
   const truncatedBiography = getTrimmedText(getFullBiography(selectedAdviser), 1203);
@@ -116,7 +132,9 @@ export const Details = () => {
           <div className="prose">
             <h3 className="text-xl font-semibold mb-[35px]">Biography / Profile</h3>
             <div>
-              {isExpanded ? fullBiography() : <p>{truncatedBiography}</p>}
+              {isExpanded ? fullBiography() : <p
+                dangerouslySetInnerHTML={{ __html: truncatedBiography }}
+              ></p>}
             </div>
             <div className="mt-4">
               <button 
